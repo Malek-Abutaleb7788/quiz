@@ -1,0 +1,45 @@
+import pgzrun
+from pygame import rect
+
+TITLE="Quiz Master"
+WIDTH=780
+HEIGHT=600
+marquee_box=Rect(0,0,780,80)
+question_box=Rect(20,100,550,150)
+timer_box=Rect(590,100,150,150)
+skip_box=Rect(590,270,150,320)
+
+box1=Rect(20,270,255,150)
+box2=Rect(295,270,255,150)
+box3=Rect(20,440,255,150)
+box4=Rect(295,440,255,150)
+
+answer_boxes=[box1, box2, box3, box4]
+
+#variables
+score=0
+time_left=10
+marquee_message=""
+is_game_over=False
+
+def draw():
+    global marquee_box
+    screen.clear()
+    screen.fill(color="black")
+    screen.draw.filled_rect(marquee_box, "blue")
+    screen.draw.filled_rect(question_box, "red")
+    screen.draw.filled_rect(timer_box, "green")
+    screen.draw.filled_rect(skip_box, "purple")
+    
+    # to draw answer boxes
+    for answer_box in answer_boxes:
+        screen.draw.filled_rect(answer_box, "yellow")
+    
+    # marquee box texts
+    marquee_box="Welcome to quix master..."
+    #marquee_message += f"Q: {question_index} of {question_count}"
+    screen.draw.textbox(marquee_message, marquee_box, color="black")
+
+
+
+pgzrun.go()
