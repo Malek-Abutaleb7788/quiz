@@ -1,5 +1,5 @@
 import pgzrun
-from pygame import rect
+from pygame import Rect
 
 TITLE="Quiz Master"
 WIDTH=780
@@ -42,7 +42,7 @@ def draw():
         screen.draw.filled_rect(answer_box, "orange")
     
     # marquee box texts
-    marquee_box="Welcome to quix master..."
+    marquee_message="Welcome to quix master..."
     
     marquee_message += f"Q: {question_index} of {question_count}"
     screen.draw.textbox(marquee_message, marquee_box, color="black")
@@ -70,8 +70,14 @@ def move_marquee():
     if marquee_box.right<0:
         marquee_box.left=WIDTH
 
-def read_file():
-    pass
+def read_question_file():
+    global question_count
+    global questions
+    q_file=open(question_file_name, "r")
+    for question in q_file:
+        questions.append(question)
+        question_count += 1
+    q_file.close()
 
 def read_next():
     pass
