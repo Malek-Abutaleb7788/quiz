@@ -22,24 +22,76 @@ time_left=10
 marquee_message=""
 is_game_over=False
 
+question_file_name="quizmaster\questions.txt"
+questions=[]
+question_count=0 # total count of quesitons in file
+question_index=0 # current question numbere
+
 def draw():
+    global marquee_message
     global marquee_box
     screen.clear()
     screen.fill(color="black")
-    screen.draw.filled_rect(marquee_box, "blue")
+    screen.draw.filled_rect(marquee_box, "white")
     screen.draw.filled_rect(question_box, "red")
     screen.draw.filled_rect(timer_box, "green")
-    screen.draw.filled_rect(skip_box, "purple")
+    screen.draw.filled_rect(skip_box, "blue")
     
     # to draw answer boxes
     for answer_box in answer_boxes:
-        screen.draw.filled_rect(answer_box, "yellow")
+        screen.draw.filled_rect(answer_box, "orange")
     
     # marquee box texts
     marquee_box="Welcome to quix master..."
-    #marquee_message += f"Q: {question_index} of {question_count}"
+    
+    marquee_message += f"Q: {question_index} of {question_count}"
     screen.draw.textbox(marquee_message, marquee_box, color="black")
+    
+    # display timer button text
+    screen.draw.textbox(str(time_left), timer_box, color="black", shadow=(0.5, 0.5), scolor="dim gray")
 
+    #skip box text
+    screen.draw.textbox("SKIP", skip_box, color="black", angle=-90, shadow=(-1, -1), scolor="dim gray")
+    
+    #to display question box text
+    screen.draw.textbox(question[0].strip(), question_box, color="black"
+                        , shadow=(0.5, 0.5), scolor="dim gray")
+    # to display answer box text
+    index=1
+    for answer_box in answer_boxes:
+        screen.draw.textbox(question[index].strip(), answer_box, color="black")
+        index+=1
+
+def update():
+    move_marquee()
+
+def move_marquee():
+    marquee_box.x-=2
+    if marquee_box.right<0:
+        marquee_box.left=WIDTH
+
+def read_file():
+    pass
+
+def read_next():
+    pass
+
+def on_mouse_down(pos):
+    pass
+
+def correct_answer():
+    pass
+
+def game_over():
+    pass
+
+def skip():
+    pass
+
+def time_left():
+    pass
+
+question=read_next()
 
 
 pgzrun.go()
